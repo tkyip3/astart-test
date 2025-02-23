@@ -1,4 +1,4 @@
-import { SetStateAction, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 // Task Description:
 // This is a listing page of books.
@@ -61,7 +61,7 @@ async function fetchAllBooks() {
 
 function App() {
   const [books, setBooks] = useState<Book[]>([]);
-  const [page, setPage] = useState(1);
+  //const [page, setPage] = useState(1);
   const [keyword, setKeyword] = useState("");
   const [tagFilters, setTagFilters] = useState<string[]>([]);
 
@@ -69,8 +69,6 @@ function App() {
   
   const [searchResult, setSearchResult] = useState<Book[]>([]);
   const [tagSearch, setTagSearch] = useState<string>("");
-
-  const shownItems: Book[] = []; // to do
 
   useEffect(() => {
     (async () => {
@@ -80,54 +78,19 @@ function App() {
         console.error("取得 fetchAllBooks() 內容時發生錯誤:", error);
       }
     })();
-
-
-    /*
-    async function getListContent() {
-      try {
-        const fetchList = await fetchAllBooks();
-        
-        const list = fetchList.filter((item)=>item);
-        setBooks(list);
-        
-      } catch (error) {
-        console.error('取得 list 內容時發生錯誤:', error);
-      }
-    }
-
-    getListContent();
-    */
-
-    // (async () => {
-    //   console.log(await fetchAllBooks())
-    //   setBooks(await fetchAllBooks())
-    //   await console.log(books)
-
-    // })()
-    //fetchData().then(()=>console.log(books));
-
-    /*
-    const allBooks = fetchAllBooks.filter((item) => {
-      setBooks([...books], items)
-    });
-    */
-  }, []); // to do
+    
+  }, []); 
 
   useEffect(() => {
     const filteredBooks = books.filter(book =>
       book.name.toLowerCase().includes(keyword.toLowerCase()) &&
       (tagFilters.length === 0 || tagFilters.every(tag => book.tags.includes(tag)))
     );
-
-    console.log(filteredBooks)
     
-    // You can set the filtered books to another state variable if needed
     setSearchResult(filteredBooks);
-    // console.log(shownItems);
   }, [books, keyword, tagFilters]);
 
   // ... no need to write the UI part
-
   return (
     <>
       <section>
