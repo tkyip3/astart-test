@@ -1,14 +1,5 @@
 import { useEffect, useState } from "react";
 
-// Task Description:
-// This is a listing page of books.
-// When the page is loaded, it fetches all books into a variable, called "books"
-// Then user will do some searching, by typing some keywords or some tags
-// The page will do the filtering locally and then store the result into a variable, called "shownItems"
-
-// finish those "to do" parts
-// p.s., you can add any other variables or functions you need
-
 interface Book {
   id: string;
   name: string;
@@ -64,8 +55,6 @@ function App() {
   //const [page, setPage] = useState(1);
   const [keyword, setKeyword] = useState("");
   const [tagFilters, setTagFilters] = useState<string[]>([]);
-
-
   
   const [searchResult, setSearchResult] = useState<Book[]>([]);
   const [tagSearch, setTagSearch] = useState<string>("");
@@ -95,8 +84,8 @@ function App() {
     <>
       <section>
         <div className="container mx-auto">
-          <div className="flex">
-            <div className="w-1/2 px-2">
+          <div className="md:flex">
+            <div className="md:w-1/2 px-2 mb-8">
               <h1 className="text-xl">All Book list</h1>
               <div className="overflow-x-auto">
                 <table className="table table-sm">
@@ -129,7 +118,7 @@ function App() {
                 </table>
               </div>
             </div>
-            <div className="w-1/2 px-2">
+            <div className="md:w-1/2 px-2">
               <h1 className="text-xl mb-2">Search Result</h1>
               <div className="join">
                 <input type="text" placeholder="Keyword" className="input input-bordered w-full max-w-xs join-item" value={keyword} onChange={(e)=>{setKeyword(e.target.value)}}/>
@@ -162,10 +151,8 @@ function App() {
                           </tr>
                         );
                     })}
-
                   </tbody>
                 </table>
-                
             </div>
           </div>
         </div>
